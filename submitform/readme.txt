@@ -1,0 +1,5 @@
+首先更改数据库用户名和密码配置
+若表task_tb不存在请将application.properties中的spring.jpa.hibernate.ddl-auto设置为create
+在运行一次后，可设置为update
+
+id暂时置空
