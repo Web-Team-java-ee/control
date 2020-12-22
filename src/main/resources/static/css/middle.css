@@ -51,7 +51,7 @@ ul {
 }
 
 .container .search_bar form button {
-    background-image: url(../images/search_icon_white.png);
+    background-image: url(../img/search_icon_white.png);
     height: 30px;
     width: 30px;
 }
