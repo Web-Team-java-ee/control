@@ -27,7 +27,7 @@ public class LoginController {
         String password = request.getParameter("password");
 
         User user = userMapper.Identify(username,password);
-
+        System.out.println(user);
         if(user!=null)
         {
             //传给下个页面个username，可添加
