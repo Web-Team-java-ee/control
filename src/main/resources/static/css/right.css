@@ -1,0 +1,10 @@
+.col {}
+
+.col .context {
+    text-align: center;
+}
+
+.col .context .title {
+    font-weight: 1000;
+    font-size: xx-large;
+}

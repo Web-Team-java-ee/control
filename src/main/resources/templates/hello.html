@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<!--
+ * @Author       : fenggi123
+ * @Date         : 2020-12-09 17:10:58
+ * @LastEditors  : fenggi123
+ * @LastEditTime : 2020-12-22 11:50:09
+ * @FilePath     : \JavaEE_Project\html\blank.html
+ * @Description  :
+ * @Version      : 1.0
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body>
+<p th:text="${name}">hello</p>
+<p th:text="'Hello!'+${name}+'!'">可靠</p>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>index</th>
+        <th>id</th>
+        <th>name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:class="${status.even}?'even':'odd'" th:each=" s,status: ${studentList} ">
+        <td th:text="${status.index}">54</td>
+        <td th:text="${s.id} ">123</td>
+        <td th:text="${s.name} ">546</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<style>
+    .even {
+        background-color: aqua;
+    }
+
+    .odd {
+        background-color: royalblue;
+    }
+</style>
+
+
+</html>
