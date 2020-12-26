@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<center>
+    <br><br>
+    <h2 style="color:green">创建任务</h2>
+    <br><br>
+
+    <form class="form-horizontal" action="/greeting" role="form" method="post">
+
+        <div class="form-group" style="width:500px">
+            <label for="task_name" class="col-sm-2 control-label">任务名</label>
+            <div class="col-sm-10">
+                <input type="text"  class="form-control" name="task_name" id="task_name" placeholder="输入任务名">
+            </div>
+        </div>
+
+
+        <div class="form-group" style="width:500px">
+            <label for="task_context" class="col-sm-2 control-label">任务内容</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="3" name="task_context"  id="task_context" placeholder="输入任务内容"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <button type="submit" class="btn btn-primary" id="btn">Submit</button>
+                <input type="reset" class="btn btn-warning" value="Reset" />
+            </div>
+        </div>
+    </form>
+
+</center>
+
+</body>
+
+</html>

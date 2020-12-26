@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--
+ * @Author       : fenggi123
+ * @Date         : 2020-12-22 11:37:58
+ * @LastEditors  : fenggi123
+ * @LastEditTime : 2020-12-25 23:26:45
+ * @FilePath     : \JavaEE_Project\html\main.html
+ * @Description  : 
+ * @Version      : 1.0
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+
+    <script th:src="@{https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+    <script th:src="@{../static/js/main.js}"></script>
+    <link rel="stylesheet" href="../css/middle.css"th:href="@{../static/css/middle.css}">
+    <link rel="stylesheet" href="../css/themes.css" th:href="@{../static/css/themes.css}">
+    <link rel="stylesheet" href="../css/menu.css" th:href="@{../static/css/menu.css}">
+    <link rel="stylesheet" href="../css/right.css" th:href="@{../static/css/right.css.css}">
+    <title>Document</title>
+</head>
+
+<body>
+
+<script>
+    function  getTaskList(obj,task_index) {
+        window.location.href="http://localhost:8080/findOneTaskList/"+task_index;
+    }
+    function  getTask(obj,task_id) {
+        window.location.href="http://localhost:8080/getCurrentTask/"+task_id;
+    }
+</script>
+    <div class="row">
+        <div class="col-sm-2" th:bgcolor="6633CC">
+            <div class="header">
+                <div class="avatar_icon">
+                    <img th:src="@{../static/img/2.jpg}" alt="头像" width="50px" height="50px">
+                </div>
+
+            </div>
+            <div class="main">
+                <div class="list_name">
+                    <p>清单</p>
+                    <HR color=#A9A9A9 SIZE=1>
+                    <div class="list">
+                        <ul th:each="tl:${application.taskList}">
+                            <li class="current">
+                                <a th:onclick="'javascript:getTaskList('+this+','+${tl.task_index}+');'">
+                                    <div class="task_icon">
+                                        <img th:src="@{../static/img/list_icon_white.png}" alt="" width="25px" height="25px">
+                                    </div>
+                                    <div class="list_title">
+                                        <p th:text="${tl.task_title}">第一个清单</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="add_list">
+                            <a href="http://localhost:8080/addTaskList">
+                                <div class="add_task_icon">
+                                    <img th:src="@{../static/img/add.png}" alt="" width="23px" height="23px">
+                                </div>
+                                <div class="add">
+                                    <p>添加清单</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <HR color=#A9A9A9 size=1>
+
+                </div>
+            </div>
+        </div>
+        <div class="vLine">
+        </div>
+        <div class="col">
+            <div class="wrap">
+                <div class="container">
+                    <div class="top">
+                        <div class="title_icon">
+                            <img th:src="@{../static/img/list_icon (2).png}" width="35px" height="35px" alt="">
+                        </div>
+                        <div class="title">
+                            <h2 th:text="${application.firstTaskList.task_title}">标题</h2>
+                        </div>
+                        <div class="add_task">
+                            <a href="http://localhost:8080/greeting">
+                                <img th:src="@{../static/img/add.png}" alt="" width="30px" height="30px">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="search_bar">
+                        <form action="/search">
+                            <input type="text" id="content" name="content" placeholder="请输入要搜索的内容">
+                        </form>
+                    </div>
+                    <div class="main">
+                        <div class="list">
+                            <a href="">
+                                <span class="down_arrow_icon">
+                            <img th:src="@{../static/img/down_arrow.png}" alt="" height="10px" width="10px">
+                        </span>
+                                <p>未完成</p>
+                            </a>
+
+                            <div class="missions">
+                                <form>
+                                <ul th:each="t:${application.tasks}" >
+                                    <li th:if="${t.task_type}eq 'undone'">
+                                        <input type="checkbox" th:id="${t.task_id}" th:name="task_id" th:value="${t.task_id}">
+
+                                        <label th:for="${t.task_id}" ></label>
+                                        <a th:onclick="'javascript:getTask('+this+','+${t.task_id}+');'" >
+                                        <span th:text="${t.task_name}">第一个任务</span>
+                                        <HR color=#A9A9A9 SIZE=1>
+                                        </a>
+                                    </li>
+                                </ul>
+                                    <input type="submit" class="btn btn-primary" th:value="更改" >
+                                </form>
+                            </div>
+                        </div>
+                        <div class="finished">
+                            <div class="list">
+                                <a href="">
+                                    <span class="down_arrow_icon">
+                                        <img th:src="@{../static/img/down_arrow.png}" alt="" height="10px" width="10px"></span>
+                                    <p>已完成</p>
+                                </a>
+                                <div class="missions">
+                                    <form>
+                                    <ul th:each="t:${application.tasks}" >
+
+                                        <li th:if="${t.task_type}eq 'done'">
+
+                                            <input type="checkbox" th:id="${t.task_id}" th:name="task_id" th:value="${t.task_id}" >
+
+                                            <label th:for="${t.task_id}" ></label>
+                                            <a th:onclick="'javascript:getTask('+this+','+${t.task_id}+');'">
+                                            <span th:text="${t.task_name}">第一个任务</span>
+                                            </a>
+                                            <HR color=#A9A9A9 SIZE=1>
+
+                                        </li>
+                                    </ul>
+                                        <input type="submit" class="btn btn-primary" th:value="更改">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vLine">
+        </div>
+        <div class="col">
+            <div class="context">
+            <div th:text="${application.currentTask.task_name}" class="title">
+                123
+            </div>
+            <div class="content" th:text="${application.currentTask.task_context}"}>
+                453465f34546
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>

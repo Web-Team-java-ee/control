@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+
+<center>
+    <br><br>
+    <h2 style="color:green">任务清单</h2>
+    <br><br>
+
+    <table class="table table-bordered table table-hover" style="width:800px">
+        <tr style="color:#ff0000">
+            <th>任务名</th>
+            <th>任务类型</th>
+            <th>任务内容</th>
+            <th>创建时间</th>
+        </tr>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.task_name}">null</td>
+            <td th:text="${task.task_type}">null</td>
+            <td th:text="${task.task_context}">null</td>
+            <td th:text="${task.create_time}">null</td>>
+        </tr>
+    </table>
+
+    <p>
+        <a href="/greeting"><button type="button" class="btn btn-primary">Return to home</button></a>
+    </p>
+
+</center>
+</body>
+
+</html>
