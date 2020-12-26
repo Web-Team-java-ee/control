@@ -7,9 +7,6 @@ import com.example.demo.mapper.TaskMapper;
 import com.example.demo.model.Task;
 import com.example.demo.model.TaskList;
 import com.example.demo.model.User;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -82,22 +78,14 @@ public class TaskController {
         System.out.println(task_index);
         TaskList taskList=taskListMapper.findOneTaskList(user.getId(),task_index);
         System.out.println(taskList);
-        List<Task> tasks= taskMapper.getTask(user.getId(),taskList.getTask_index());
+        List<Task> tasks= taskMapper.getTask(user.getId(),task_index);
         System.out.println(tasks);
         servletContext.setAttribute("firstTaskList",taskList);
         servletContext.setAttribute("tasks",tasks);
         servletContext.setAttribute("currentIndex",task_index);
-        return "test";
+        return "main";
 }
 
-    @RequestMapping("/test")
-    public String test(HttpServletRequest request){
-        ServletContext servletContext=request.getSession(true).getServletContext();
-
-        List<Task> tasks1= (List<Task>) servletContext.getAttribute("tasks");
-        System.out.println(tasks1);
-        return "test";
-    }
 
     @RequestMapping("/addTaskList")
     public String addTaskList(HttpServletRequest request){
@@ -109,7 +97,7 @@ public class TaskController {
         taskListMapper.addTaskList(taskList1);
         taskList=taskListMapper.findTaskList(user.getId());
         servletContext.setAttribute("taskList",taskList);
-        return "test";
+        return "main";
     }
 
     @RequestMapping(value ="/getCurrentTask/{task_id}",method =RequestMethod.GET)
@@ -120,7 +108,7 @@ public class TaskController {
         Task task=taskMapper.findByIDTask(task_id);
         servletContext.setAttribute("currentTask",task);
 
-        return "test";
+        return "main";
     }
 
 

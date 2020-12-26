@@ -6,15 +6,10 @@ import com.example.demo.model.TaskList;
 import com.example.demo.model.User;
 import com.example.demo.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -64,7 +59,7 @@ public class UserController {
             servletContext.setAttribute("firstTaskList",firstTaskList);
             Task task=taskMapper.getOneTask(1,user.getId());
             servletContext.setAttribute("currentTask",task);
-            return "test";
+            return "main";
         }
         else
         {
@@ -95,8 +90,33 @@ public class UserController {
         return "login";
     }
 
+    @RequestMapping("/search")
+    public String search(HttpServletRequest request){
+        ServletContext servletContext=request.getSession(true).getServletContext();
+        String content=request.getParameter("content");
+        System.out.println(content);
 
 
+        User user= (User) servletContext.getAttribute("user");
+        Integer currentIndex= (Integer) servletContext.getAttribute("currentIndex");
+        System.out.println(currentIndex);
+        String fix="%"+content+"%";
+        List<Task>tasks=taskMapper.search(user.getId(),currentIndex,fix);
+        System.out.println(tasks);
+        servletContext.setAttribute("tasks",tasks);
+        return "main";
+
+    }
+
+    @RequestMapping("/home")
+    public String getHome(HttpServletRequest request){
+        ServletContext servletContext=request.getSession(true).getServletContext();
+        User user= (User) servletContext.getAttribute("user");
+        Integer currentIndex= (Integer) servletContext.getAttribute("currentIndex");
+        List<Task>tasks=taskMapper.getTask(user.getId(),currentIndex);
+        servletContext.setAttribute("tasks",tasks);
+        return "main";
+    }
 
 
 

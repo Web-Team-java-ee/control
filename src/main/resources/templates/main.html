@@ -8,7 +8,7 @@
  * @Date         : 2020-12-22 11:37:58
  * @LastEditors  : fenggi123
  * @LastEditTime : 2020-12-25 23:26:45
- * @FilePath     : \JavaEE_Project\html\test.html
+ * @FilePath     : \JavaEE_Project\html\main.html
  * @Description  : 
  * @Version      : 1.0
 -->
@@ -40,11 +40,9 @@
 
 <script>
     function  getTaskList(obj,task_index) {
-        alert(task_index);
         window.location.href="http://localhost:8080/findOneTaskList/"+task_index;
     }
     function  getTask(obj,task_id) {
-        alert(task_id);
         window.location.href="http://localhost:8080/getCurrentTask/"+task_id;
     }
 </script>
@@ -108,8 +106,8 @@
                         </div>
                     </div>
                     <div class="search_bar">
-                        <form action="">
-                            <input type="text" placeholder="请输入要搜索的内容">
+                        <form action="/search">
+                            <input type="text" id="content" name="content" placeholder="请输入要搜索的内容">
                         </form>
                     </div>
                     <div class="main">
@@ -122,16 +120,20 @@
                             </a>
 
                             <div class="missions">
+                                <form>
                                 <ul th:each="t:${application.tasks}" >
                                     <li th:if="${t.task_type}eq 'undone'">
-                                        <a th:onclick="'javascript:getCurrentTask('+this+','+${t.task_id}+');'" >
-                                        <input type="checkbox" th:id="${t.task_id}" >
+                                        <input type="checkbox" th:id="${t.task_id}" th:name="task_id" th:value="${t.task_id}">
+
                                         <label th:for="${t.task_id}" ></label>
+                                        <a th:onclick="'javascript:getTask('+this+','+${t.task_id}+');'" >
                                         <span th:text="${t.task_name}">第一个任务</span>
                                         <HR color=#A9A9A9 SIZE=1>
                                         </a>
                                     </li>
                                 </ul>
+                                    <input type="submit" class="btn btn-primary" th:value="更改" >
+                                </form>
                             </div>
                         </div>
                         <div class="finished">
@@ -142,18 +144,23 @@
                                     <p>已完成</p>
                                 </a>
                                 <div class="missions">
+                                    <form>
                                     <ul th:each="t:${application.tasks}" >
 
                                         <li th:if="${t.task_type}eq 'done'">
-                                            <a th:onclick="'javascript:getCurrentTask('+this+','+${t.task_id}+');'">
-                                            <input type="checkbox" th:id="${t.task_id}" >
+
+                                            <input type="checkbox" th:id="${t.task_id}" th:name="task_id" th:value="${t.task_id}" >
+
                                             <label th:for="${t.task_id}" ></label>
+                                            <a th:onclick="'javascript:getTask('+this+','+${t.task_id}+');'">
                                             <span th:text="${t.task_name}">第一个任务</span>
                                             </a>
                                             <HR color=#A9A9A9 SIZE=1>
 
                                         </li>
                                     </ul>
+                                        <input type="submit" class="btn btn-primary" th:value="更改">
+                                    </form>
                                 </div>
                             </div>
                         </div>

@@ -28,4 +28,7 @@ public interface TaskMapper {
     @Select("select * from task_tb t where  t.task_id=#{id}")
     public Task findByIDTask(Integer id);
 
+
+    @Select("select * from task_tb t where  t.id=#{id} and t.task_index=#{currentIndex} and t.task_name like #{content}")
+    public List<Task> search(Integer id,Integer currentIndex,String content);
 }
