@@ -18,7 +18,11 @@ public class LoginController {
     //登陆
     @GetMapping("/login")
     public String Login(){
-        return "login";
+        return "main";
+    }
+    @GetMapping("/test")
+    public String hello(){
+        return "hello";
     }
 
     @RequestMapping("/addLogin")

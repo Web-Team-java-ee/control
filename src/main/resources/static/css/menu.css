@@ -1,0 +1,106 @@
+  .header {
+      height: 50px;
+  }
+  
+  .header .avatar_icon {
+      float: left;
+  }
+  
+  .header .avatar_icon img {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+  }
+  
+  .header .search_icon {
+      float: right;
+      margin-left: 100px;
+  }
+  
+  .header .search_icon img {
+      height: 30px;
+      margin-top: 10px;
+      vertical-align: middle;
+  }
+  
+  .main .list {
+      margin: 0;
+      padding: 0;
+  }
+  
+  .main .list_name p {
+      clear: both;
+  }
+  
+  .main .list_name .list ul {
+      padding: 0;
+      margin: 0;
+  }
+  
+  .main .list_name .list ul li {
+      list-style: none;
+      overflow: hidden;
+  }
+  
+  .main .list_name .list ul li {
+      height: 30px;
+  }
+  
+  .main .list_name .list ul li a {
+      display: block;
+      text-align: center;
+      height: 30px;
+  }
+  
+  .main .list_name .list ul li a:hover {
+      background: #808080;
+      opacity: .8;
+      filter: alpha(opacity=100);
+      color: white;
+  }
+  
+  .main .list_name .list ul .current .task_icon {
+      float: left;
+      height: 25px;
+      width: 25px;
+  }
+  
+  .main .list_name .list ul .current .list_title {
+      float: left;
+  }
+  
+  .main .list_name .list ul .current .list_title p {
+      margin: 4px 0 0 4px;
+  }
+  
+  .main .list_name .list .add_list {
+      height: 30px;
+  }
+  
+  .main .list_name .list .add_list .add_task_icon {
+      margin-top: 3px;
+      float: left;
+      height: 25px;
+      width: 25px;
+  }
+  
+  .main .list_name .list .add_list a {
+      display: block;
+      text-align: center;
+      height: 30px;
+  }
+  
+  .main .list_name .list .add_list a:hover {
+      background: #808080;
+      opacity: .8;
+      filter: alpha(opacity=100);
+      color: white;
+  }
+  
+  .main .list_name .list .add_list .add {
+      float: left;
+  }
+  
+  .main .list_name .list .add_list .add {
+      margin: 5px 0 0 6px;
+  }
